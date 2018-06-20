@@ -39,7 +39,7 @@ It's also possible to call `locker.LockWithContext(ctx)` if you want to be able 
 
 ## Example: Dining Philosophers Problem
 
-In computer science, the [dining philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem)is an example problem often used in concurrent algorithm design to illustrate synchronization issues and techniques for resolving them. Notably, with `stl`, the task can be solved elegantly comparing to any other “bare” solutions. The following is a short description of the problem:
+In computer science, the [dining philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem) is an example problem often used in concurrent algorithm design to illustrate synchronization issues and techniques for resolving them. Notably, with `stl`, the task can be solved elegantly comparing to any other “bare” solutions. The following is a short description of the problem:
 
 Five philosophers are sitting at the circle dining table. There are five plates with spaghetti on it, and also five forks arranged so that every philosopher can take two nearest forks in both his hands. Philosophers either can think about their philosophical problems, or they can eat spaghetti. The thinkers are obligated to use two forks for eating. If a philosopher holds just one fork, he can’t eat or think. It's needed to organize their existence so that every philosopher could eat and think by turn, forever.
 
