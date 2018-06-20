@@ -60,7 +60,7 @@ resources := [][]string{
 }
 ```
 
-Let's continue with constructing a transaction (or a transaction locker like in this case). When the philosopher changes his activity from `thinking` to `eating`, he tries to take the left and the right fork `exclusively`. If he successfully takes (locks) both, he spends some time eating his spaghetti. If any of the forks is taken by a neighbor, our philosopher should should wait for any other philosopher to finish eating (unlock).
+Let's continue with constructing a transaction (or a transaction locker like in this case). When the philosopher changes his activity from `thinking` to `eating`, he tries to take the left and the right fork `exclusively`. If he successfully takes (locks) both, he spends some time eating his spaghetti. If any of the forks is taken by a neighbor, our philosopher should wait for any other philosopher to finish eating (unlock).
 
 This is how transaction lockers for each philosophers can be created.
 
@@ -84,7 +84,7 @@ To change philosopher's activity (exclusively lock both specified resources) we 
 // Philosopher is thinking here...
 // ...
 
-// No he decided to take forks and eat a little bit of his spaghetti.
+// Now he decided to take forks and eat a little bit of his spaghetti.
 locker.Lock()
 defer locker.Unlock()
 
