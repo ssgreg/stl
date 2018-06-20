@@ -6,7 +6,7 @@
 [![Go Report Status](https://goreportcard.com/badge/github.com/ssgreg/stl)](https://goreportcard.com/report/github.com/ssgreg/stl)
 [![Coverage Status](https://coveralls.io/repos/github/ssgreg/stl/badge.svg?branch=master)](https://coveralls.io/github/ssgreg/stl?branch=master)
 
-Package `stl` provides multiple atomic dynamic shared/exclusive locks, based of [Software Transactional Memory](https://en.wikipedia.org/wiki/Software_transactional_memory) (STM) concurrency control mechanism.
+Package `stl` provides multiple atomic dynamic shared/exclusive locks, based on [Software Transactional Memory](https://en.wikipedia.org/wiki/Software_transactional_memory) (STM) concurrency control mechanism.
 In addition `stl` locks can take `context.Context` that allows to cancel or set a deadline for such locks.
 
 Locks are fast and lightweight. The implementation requires only one `mutex` and one `channel` per vault (a set of locks with any number of resources).
