@@ -28,7 +28,7 @@ type Builder interface {
 }
 
 // Vault defines a resource vault that can lock/unlock resources according to
-// the specified transation.
+// the specified transaction.
 type Vault interface {
 	Lock(context.Context, Tx) error
 	Unlock(Tx)
