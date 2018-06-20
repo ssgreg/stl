@@ -1,5 +1,6 @@
 # Software Transactional Locks
 
+![Alt text](https://user-images.githubusercontent.com/1574981/41672584-ef9140a4-74c2-11e8-9da2-9ca926f77a53.png "(c) Ashley McNamara")
 [![GoDoc](https://godoc.org/github.com/ssgreg/stl?status.svg)](https://godoc.org/github.com/ssgreg/stl)
 [![Build Status](https://travis-ci.org/ssgreg/stl.svg?branch=master)](https://travis-ci.org/ssgreg/stl)
 [![Go Report Status](https://goreportcard.com/badge/github.com/ssgreg/stl)](https://goreportcard.com/report/github.com/ssgreg/stl)
