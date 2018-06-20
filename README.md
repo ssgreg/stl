@@ -25,7 +25,12 @@ go get github.com/ssgreg/stl
 You can also combine `shared` and `exclusive` resources while building a transaction or transactional locker:
 
 ```go
-locker := New().Exclusive("terminal").Shared("network").ToLocker(v)
+// A vault that holds all locked resources.
+v := stl.NewVault()
+
+// ...
+
+locker := stl.New().Exclusive("terminal").Shared("network").ToLocker(v)
 locker.Lock()
 defer locker.Unlock()
 ```
@@ -60,6 +65,11 @@ Let's continue with constructing a transaction (or a transaction locker like in 
 This is how transaction lockers for each philosophers can be created.
 
 ```go
+// A vault that holds all locked resources.
+v := stl.NewVault()
+
+// ...
+
 for n := 0; n < 5; n++ {
     // ...
     // A locker that can exclusively lock/unlock both forks atomically.
