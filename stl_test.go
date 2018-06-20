@@ -328,7 +328,7 @@ func TestDiningPhilosophers(t *testing.T) {
 		go func(n int) {
 			defer wg.Done()
 
-			// A locker that exclusively locks both forks.
+			// A locker that can exclusively lock/unlock both forks atomically.
 			locker := New().Exclusive(resources[n][0]).Exclusive(resources[n][1]).ToLocker(v)
 
 			// Think/Eat for five times.
