@@ -8,7 +8,7 @@
 Package `stl` provides multiple atomic dynamic shared/exclusive locks, based of [Software Transactional Memory](https://en.wikipedia.org/wiki/Software_transactional_memory) (STM) concurrency control mechanism.
 In addition `stl` locks take `context.Context` that allows you to cancel or set a deadline to such locks.
 
-Locks are fast and lightweight. The implementation is required only one `mutex` and one `channel` per vault (a set of locks with any number of resources).
+Locks are fast and lightweight. The implementation requires only one `mutex` and one `channel` per vault (a set of locks with any number of resources).
 
 ## Installation
 
@@ -17,3 +17,5 @@ Install the package with:
 ```shell
 go get github.com/ssgreg/stl
 ```
+
+## Dining Philosophers problem
