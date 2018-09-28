@@ -15,6 +15,10 @@ type stackedBuilder struct {
 }
 
 func (t *stackedBuilder) Shared(name string) Builder {
+	if name == "" {
+		panic("resource name could not be empty")
+	}
+
 	t.prefix = t.prefix + name
 	t.shs = append(t.shs, t.prefix)
 
@@ -22,6 +26,10 @@ func (t *stackedBuilder) Shared(name string) Builder {
 }
 
 func (t *stackedBuilder) Exclusive(name string) Builder {
+	if name == "" {
+		panic("resource name could not be empty")
+	}
+
 	t.prefix = t.prefix + name
 	t.exs = append(t.exs, t.prefix)
 

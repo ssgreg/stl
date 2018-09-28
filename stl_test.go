@@ -201,6 +201,13 @@ func TestExclusiveAndSharedInParallelWithDiffExclusiveAndSameShared(t *testing.T
 	require.True(t, stats[0].Duration < Dur+time.Millisecond*20 && stats[0].Duration > Dur)
 }
 
+func TestEmptyResourceNames(t *testing.T) {
+	require.Panics(t, func() { NewStacked().Shared("") })
+	require.Panics(t, func() { NewStacked().Exclusive("") })
+	require.Panics(t, func() { New().Shared("") })
+	require.Panics(t, func() { New().Exclusive("") })
+}
+
 func TestStacked(t *testing.T) {
 	const Dur = time.Millisecond * 100
 	bc := bottleneck.NewCalculator()

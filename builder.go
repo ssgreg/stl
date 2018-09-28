@@ -14,12 +14,20 @@ type builder struct {
 }
 
 func (t *builder) Shared(name string) Builder {
+	if name == "" {
+		panic("resource name could not be empty")
+	}
+
 	t.shs = append(t.shs, name)
 
 	return t
 }
 
 func (t *builder) Exclusive(name string) Builder {
+	if name == "" {
+		panic("resource name could not be empty")
+	}
+
 	t.exs = append(t.exs, name)
 
 	return t
