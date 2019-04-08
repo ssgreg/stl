@@ -348,7 +348,7 @@ func TestDiningPhilosophers(t *testing.T) {
 	wg.Wait()
 }
 
-func TestJoin(t *testing.T) {
+func TestMergeTx(t *testing.T) {
 	ttx := []Tx{
 		NewStacked().Shared("resource1").Shared("resource2").Exclusive("resource3").ToTx(),
 		NewStacked().Exclusive("resource1").ToTx(),
@@ -367,7 +367,7 @@ func TestJoin(t *testing.T) {
 		"resource1resource4resource5",
 	}
 
-	tx := Join(ttx...)
+	tx := MergeTx(ttx...)
 
 	require.ElementsMatch(t, expectedExs, tx.ListExclusive())
 	require.ElementsMatch(t, expectedShs, tx.ListShared())
