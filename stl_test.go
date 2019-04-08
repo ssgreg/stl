@@ -347,3 +347,28 @@ func TestDiningPhilosophers(t *testing.T) {
 
 	wg.Wait()
 }
+
+func TestJoin(t *testing.T) {
+	ttx := []Tx{
+		NewStacked().Shared("resource1").Shared("resource2").Exclusive("resource3").ToTx(),
+		NewStacked().Exclusive("resource1").ToTx(),
+		NewStacked().Shared("resource1").Shared("resource4").Exclusive("resource5").ToTx(),
+		NewStacked().Shared("resource1").Shared("resource6").ToTx(),
+	}
+
+	expectedShs := []string{
+		"resource1resource2",
+		"resource1resource4",
+		"resource1resource6",
+	}
+	expectedExs := []string{
+		"resource1resource2resource3",
+		"resource1",
+		"resource1resource4resource5",
+	}
+
+	tx := Join(ttx...)
+
+	require.ElementsMatch(t, expectedExs, tx.ListExclusive())
+	require.ElementsMatch(t, expectedShs, tx.ListShared())
+}
