@@ -5,11 +5,10 @@ func MergeTx(ttx ...Tx) Tx {
 	txMap := map[string]bool{}
 	for _, tx := range ttx {
 		for _, s := range tx.ListShared() {
-			// Ensure exclusive key was not set before.
-			if !txMap[s] {
-				txMap[s] = false
-			}
+			txMap[s] = false
 		}
+	}
+	for _, tx := range ttx {
 		for _, s := range tx.ListExclusive() {
 			txMap[s] = true
 		}
