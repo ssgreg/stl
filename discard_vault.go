@@ -14,5 +14,9 @@ func (v *discardVault) Lock(context.Context, Tx) error {
 	return nil
 }
 
+func (v *discardVault) TryLock(context.Context, Tx) (bool, error) {
+	return true, nil
+}
+
 func (v *discardVault) Unlock(Tx) {
 }

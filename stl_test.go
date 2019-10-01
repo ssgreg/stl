@@ -372,3 +372,27 @@ func TestMergeTx(t *testing.T) {
 	require.ElementsMatch(t, expectedExs, tx.ListExclusive())
 	require.ElementsMatch(t, expectedShs, tx.ListShared())
 }
+
+func TestTryLock(t *testing.T) {
+	v := NewVault()
+	tx1 := NewStacked().Shared("resource1").ToTx()
+	ok, err := v.TryLock(context.Background(), tx1)
+	require.NoError(t, err)
+	require.True(t, ok)
+	defer v.Unlock(tx1)
+
+	tx2 := NewStacked().Exclusive("resource1").ToTx()
+	ok, err = v.TryLock(context.Background(), tx2)
+	require.NoError(t, err)
+	require.False(t, ok)
+}
+
+func TestDiscardVault(t *testing.T) {
+	v := NewDiscardVault()
+	err := v.Lock(context.Background(), nil)
+	require.NoError(t, err)
+	v.Unlock(nil)
+	ok, err := v.TryLock(context.Background(), nil)
+	require.NoError(t, err)
+	require.True(t, ok)
+}
