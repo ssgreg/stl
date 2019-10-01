@@ -35,6 +35,11 @@ func (v *vault) Lock(ctx context.Context, tx Tx) error {
 	}
 }
 
+// TryLock tries to lock the resources according to specified Tx.
+func (v *vault) TryLock(ctx context.Context, tx Tx) (bool, error) {
+	return v.tryLock(tx) == nil, nil
+}
+
 // Unlock unlocks the resources according to specified Tx.
 func (v *vault) Unlock(tx Tx) {
 	v.mu.Lock()

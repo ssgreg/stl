@@ -31,5 +31,6 @@ type Builder interface {
 // the specified transaction.
 type Vault interface {
 	Lock(context.Context, Tx) error
+	TryLock(context.Context, Tx) (bool, error)
 	Unlock(Tx)
 }
