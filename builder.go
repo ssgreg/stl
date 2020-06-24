@@ -1,13 +1,23 @@
 package stl
 
-import "context"
+import (
+	"context"
+
+	"github.com/gofrs/uuid"
+)
 
 // New creates an instance of default Builder.
 func New() Builder {
-	return &builder{}
+	id, err := uuid.NewV4()
+	if err != nil {
+		panic(err)
+	}
+
+	return &builder{id: id.String()}
 }
 
 type builder struct {
+	id  string
 	shs []string
 	exs []string
 	v   Vault
@@ -31,6 +41,10 @@ func (t *builder) Exclusive(name string) Builder {
 	t.exs = append(t.exs, name)
 
 	return t
+}
+
+func (t *builder) ID() string {
+	return t.id
 }
 
 func (t *builder) ListShared() []string {

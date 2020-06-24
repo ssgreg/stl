@@ -348,6 +348,11 @@ func TestDiningPhilosophers(t *testing.T) {
 	wg.Wait()
 }
 
+func TestGenerateID(t *testing.T) {
+	require.NotEmpty(t, New().ToTx().ID())
+	require.NotEmpty(t, NewStacked().ToTx().ID())
+}
+
 func TestMergeTx(t *testing.T) {
 	ttx := []Tx{
 		NewStacked().Shared("resource1").Shared("resource2").Exclusive("resource3").ToTx(),
@@ -371,6 +376,7 @@ func TestMergeTx(t *testing.T) {
 
 	require.ElementsMatch(t, expectedExs, tx.ListExclusive())
 	require.ElementsMatch(t, expectedShs, tx.ListShared())
+	require.NotEmpty(t, tx.ID())
 }
 
 func TestTryLock(t *testing.T) {

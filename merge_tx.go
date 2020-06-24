@@ -1,5 +1,7 @@
 package stl
 
+import "github.com/gofrs/uuid"
+
 // MergeTx prepares a single transaction from several simultaneous ones.
 func MergeTx(ttx ...Tx) Tx {
 	txMap := map[string]bool{}
@@ -23,7 +25,13 @@ func MergeTx(ttx ...Tx) Tx {
 		}
 	}
 
+	id, err := uuid.NewV4()
+	if err != nil {
+		panic(err)
+	}
+
 	return &builder{
+		id:  id.String(),
 		shs: shs,
 		exs: exs,
 		v:   nil,

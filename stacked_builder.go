@@ -1,13 +1,23 @@
 package stl
 
-import "context"
+import (
+	"context"
+
+	"github.com/gofrs/uuid"
+)
 
 // NewStacked creates an instance of stacked Builder.
 func NewStacked() Builder {
-	return &stackedBuilder{}
+	id, err := uuid.NewV4()
+	if err != nil {
+		panic(err)
+	}
+
+	return &stackedBuilder{id: id.String()}
 }
 
 type stackedBuilder struct {
+	id     string
 	prefix string
 	shs    []string
 	exs    []string
@@ -42,6 +52,10 @@ func (t *stackedBuilder) ListShared() []string {
 
 func (t *stackedBuilder) ListExclusive() []string {
 	return t.exs
+}
+
+func (t *stackedBuilder) ID() string {
+	return t.id
 }
 
 func (t *stackedBuilder) ToTx() Tx {

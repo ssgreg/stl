@@ -15,6 +15,7 @@ type Locker interface {
 // Tx holds the names of shared and exclusive resources to be locked
 // atomically.
 type Tx interface {
+	ID() string
 	ListShared() []string
 	ListExclusive() []string
 }
